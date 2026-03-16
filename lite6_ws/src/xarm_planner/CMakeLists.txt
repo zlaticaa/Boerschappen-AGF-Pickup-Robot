@@ -74,6 +74,7 @@ install(
 
 install(
   TARGETS 
+  xarm_planner
   lite6_control
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
