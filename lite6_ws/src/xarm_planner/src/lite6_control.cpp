@@ -1,4 +1,6 @@
 #include "xarm_planner/xarm_planner.h"
+#include "std_msgs/msg/string.hpp"
+#include "lite6_msgs/msg/lite6pose.hpp"
 
 void exit_sig_handler(int signum)
 {
@@ -24,9 +26,17 @@ int main(int argc, char *argv[])
   RCLCPP_INFO(node->get_logger(), "namespace: %s, group_name: %s", node->get_namespace(), group_name.c_str());
   RCLCPP_INFO(node->get_logger(), "Initialising planner");
 
+  // Setup planner
   xarm_planner::XArmPlanner planner(node, group_name);
 
-  RCLCPP_INFO(node->get_logger(), "Setting target poses");
+  // Setup topic subscription
+  RCLCPP_INFO(node->get_logger(), "Initialising topic callback...");
+
+  auto subscriber_callback = [node](std_msgs::msg::String::UniquePtr msg) -> void {
+    RCLCPP_INFO(node->get_logger(), "Message: '%s", msg->data.c_str());
+  };
+
+  auto subscriber = node->create_subscription<lite6_msgs::msg::Lite6pose>("lite6_control", 10, subscriber_callback);
 
   geometry_msgs::msg::Pose target_pose1;
   target_pose1.position.x = 0.3;
