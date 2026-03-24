@@ -1,0 +1,7 @@
+geometry_msgs/Point position_x
+geometry_msgs/Point position_y
+geometry_msgs/Point position_z
+geometry_msgs/Point orientation_x
+geometry_msgs/Point orientation_y
+geometry_msgs/Point orientation_z
+geometry_msgs/Point orientation_w
