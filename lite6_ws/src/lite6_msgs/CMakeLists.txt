@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(interfaces)
+project(lite6_msgs)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -11,8 +11,8 @@ find_package(geometry_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/Lite6Pose.msg"
-  DEPENDENCIES geometry_msgs # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
+  "msg/Lite6pose.msg"
+  DEPENDENCIES geometry_msgs
 )
 
 if(BUILD_TESTING)

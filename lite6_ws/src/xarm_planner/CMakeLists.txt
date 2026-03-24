@@ -31,8 +31,9 @@ find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(moveit_msgs REQUIRED)
 find_package(xarm_msgs REQUIRED)
+find_package(lite6_msgs REQUIRED)
 
-set(dependencies "rclcpp" "std_msgs" "geometry_msgs" "moveit_msgs" "xarm_msgs" "moveit")
+set(dependencies "rclcpp" "std_msgs" "geometry_msgs" "moveit_msgs" "xarm_msgs" "moveit" "lite6_msgs" )
 
 include_directories(
   include
@@ -42,6 +43,7 @@ include_directories(
 add_library(xarm_planner SHARED
   src/xarm_planner.cpp
 )
+
 ament_target_dependencies(xarm_planner 
   moveit_ros_planning_interface
   ${dependencies}
